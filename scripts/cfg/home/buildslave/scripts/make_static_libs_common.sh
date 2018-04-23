@@ -7,7 +7,7 @@ if [ "$container" != "lxc" ]; then
 fi
 
 
-export WORKDIR=${PWD}
+export WORKDIR=$(dirname $0)
 export TMPDIR=${WORKDIR}/tmp
 export INCLUDEDIR=${WORKDIR}/include
 export LIBDIR=${WORKDIR}/lib

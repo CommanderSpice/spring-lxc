@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source make_static_libs_common.sh
+set -e
+source $(dirname $0)/make_static_libs_common.sh
 
 
 # zlib
