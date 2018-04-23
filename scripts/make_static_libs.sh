@@ -4,13 +4,13 @@ source make_static_libs_common.sh
 
 
 # zlib
-wget http://www.zlib.net/zlib-1.2.11.tar.gz
+wget https://www.zlib.net/zlib-1.2.11.tar.gz
 CFLAGS="-fPIC" ./configure --prefix ${WORKDIR}
 ${MAKE}
 ${MAKE} install
 
 # libpng
-wget http://prdownloads.sourceforge.net/libpng/libpng-1.6.34.tar.gz
+wget https://prdownloads.sourceforge.net/libpng/libpng-1.6.34.tar.gz
 #./configure --enable-static --prefix ${WORKDIR}
 ${MAKE} -f scripts/makefile.linux CFLAGS="-fPIC -DPIC" ZLIBLIB=${LIBDIR} ZLIBINC=${INCLUDEDIR} prefix=${WORKDIR}
 ${MAKE} -f scripts/makefile.linux prefix=${WORKDIR} install
@@ -22,7 +22,7 @@ ${MAKE}
 ${MAKE} install
 
 # libtiff
-wget http://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz
+wget https://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz
 ./configure --with-pic --disable-lzma --disable-jbig --prefix ${WORKDIR}
 ${MAKE}
 ${MAKE} install
@@ -39,7 +39,7 @@ ${MAKE}
 ${MAKE} install
 
 # libunwind
-wget http://download.savannah.nongnu.org/releases/libunwind/libunwind-1.2.1.tar.gz
+wget https://download.savannah.nongnu.org/releases/libunwind/libunwind-1.2.1.tar.gz
 ./configure --with-pic --disable-minidebuginfo --prefix ${WORKDIR}
 ${MAKE}
 ${MAKE} install
