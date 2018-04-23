@@ -17,7 +17,6 @@ for arch in x64 i686; do
 	done
 	lxc exec $b -- /home/buildslave/scripts/setup-buildslave.sh
 	lxc exec $b -- /home/buildslave/scripts/make_static_libs.sh
-	echo lxc exec $b -- /home/buildslave/scripts/setup-auth.sh
 	lxc exec $b -- /home/buildslave/scripts/setup-auth.sh
 	lxc exec $b -- apt clean
 done
