@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+source make_static_libs_common.sh
 
 BUILDBOTDIR=/home/buildslave
 

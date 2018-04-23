@@ -1,6 +1,12 @@
 
 set -e
 
+if [ "$container" != "lxc" ]; then
+        echo "Not running inside lxc container, exiting..."
+        exit 1
+fi
+
+
 export WORKDIR=${PWD}
 export TMPDIR=${WORKDIR}/tmp
 export INCLUDEDIR=${WORKDIR}/include
