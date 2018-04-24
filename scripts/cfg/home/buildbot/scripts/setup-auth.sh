@@ -2,7 +2,7 @@
 
 set -e
 
-BUILDBOTDIR=/home/buildslave
+BUILDBOTDIR=/home/buildbot
 
 rm -rf "$BUILDBOTDIR/.ssh"
 mkdir -p "$BUILDBOTDIR/.ssh"
