@@ -10,7 +10,7 @@ mkdir -p "$BUILDBOTDIR/.ssh"
 
 PASSWORD=$(pwgen 64 1)
 
-buildslave create-slave "$BUILDBOTDIR" localhost:9999 "$HOSTNAME" "$PASSWORD"a
+buildslave create-slave "$BUILDBOTDIR" localhost:9999 "$HOSTNAME" "$PASSWORD"
 ssh-keygen -q -t rsa -N "" -f "$BUILDBOTDIR/.ssh/id_rsa"
 
 chmod 700 "$BUILDBOTDIR/.ssh"
