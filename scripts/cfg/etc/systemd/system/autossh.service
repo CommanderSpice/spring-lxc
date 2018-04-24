@@ -1,0 +1,16 @@
+[Unit]
+Description=Keeps a tunnel to 'springrts.com' open
+After=network-online.target
+
+[Service]
+User=buildbot
+# -p [PORT]
+# -l [user]
+# -M 0 --> no monitoring
+# -N Just open the connection and do nothing (not interactive)
+# LOCALPORT:IP_ON_EXAMPLE_COM:PORT_ON_EXAMPLE_COM
+ExecStart=/usr/bin/autossh -M 10000 -N buildbot@springrts.com -L 9999:springrts.com:9989 -i /home/buildslave/.ssh/id_rsa
+
+[Install]
+WantedBy=multi-user.target
+
