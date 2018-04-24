@@ -6,17 +6,19 @@ if [ "$container" != "lxc" ]; then
         exit 1
 fi
 
-
-export WORKDIR=$(dirname $0)
+export WORKDIR=$1
 export TMPDIR=${WORKDIR}/tmp
 export INCLUDEDIR=${WORKDIR}/include
 export LIBDIR=${WORKDIR}/lib
 export MAKE="make -j2"
 export DLDIR=${WORKDIR}/download
 
-rm -rf ${TMPDIR}
-rm -rf ${INCLUDEDIR}
-rm -rf ${LIBDIR}
+echo WORKDIR:    $WORKDIR
+echo TMPDIR:     $TMPDIR
+echo INCLUDEDIR: $INCLUDEDIR
+echo LIBDIR:     $LIBDIR
+echo MAKE:       $MAKE
+echo DLDIR:      $DLDIR
 
 mkdir -p ${TMPDIR}
 mkdir -p ${INCLUDEDIR}

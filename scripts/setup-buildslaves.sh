@@ -12,7 +12,7 @@ for arch in x64 i686; do
 	cd $CFG
 	lxc file push . $b/ -p -r
 	lxc exec $b -- /home/buildbot/scripts/setup-buildslave.sh
-	lxc exec $b -- /home/buildbot/scripts/make_static_libs.sh
+	lxc exec $b -- /home/buildbot/scripts/make_static_libs.sh /home/buildbot/lib
 	lxc exec $b -- /home/buildbot/scripts/setup-auth.sh
 	lxc exec $b -- apt clean
 	lxc exec $b -- systemctl daemon-reload
