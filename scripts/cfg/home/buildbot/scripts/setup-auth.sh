@@ -4,6 +4,7 @@ set -e
 
 BUILDBOTDIR=/home/buildbot
 
+usermod -d "$BUILDBOTDIR" buildbot
 rm -rf "$BUILDBOTDIR/.ssh"
 mkdir -p "$BUILDBOTDIR/.ssh"
 
