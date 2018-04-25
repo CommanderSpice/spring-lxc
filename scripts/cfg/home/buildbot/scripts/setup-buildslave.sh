@@ -11,5 +11,6 @@ apt -y install g++ make cmake p7zip-full ninja-build \
 	freeglut3-dev libgif-dev \
 	buildbot-slave \
 	pwgen \
-	autossh
+	autossh \
+	libboost-test-dev
 
