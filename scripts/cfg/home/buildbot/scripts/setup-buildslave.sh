@@ -12,6 +12,6 @@ apt -y install g++ make cmake p7zip-full ninja-build \
 	buildbot-slave \
 	pwgen \
 	autossh \
-	libboost-test-dev libboost-chrono-dev libboost-thread-dev libboost-system-dev \
+	libboost-test-dev \
 	chrpath
 
