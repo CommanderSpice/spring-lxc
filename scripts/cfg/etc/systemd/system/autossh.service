@@ -9,7 +9,7 @@ User=buildbot
 # -M 0 --> no monitoring
 # -N Just open the connection and do nothing (not interactive)
 # LOCALPORT:IP_ON_EXAMPLE_COM:PORT_ON_EXAMPLE_COM
-ExecStart=/usr/bin/autossh -M 0 -N buildbot@springrts.com -L 9999:springrts.com:9989 -i /home/buildbot/.ssh/id_rsa
+ExecStart=/usr/bin/autossh -M 0 -N buildbot@springrts.com -L 9999:localhost:9989 -i /home/buildbot/.ssh/id_rsa
 
 [Install]
 WantedBy=multi-user.target
