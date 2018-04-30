@@ -6,7 +6,8 @@ SCRIPT=$(realpath $0)
 SCRIPTPATH=$(dirname $SCRIPT)
 CFG=$SCRIPTPATH/cfg
 LOCAL=$SCRIPTPATH/local
-ARCHITECTURES=x64 i386 win32
+ARCHITECTURES="x64 i386 win32"
+#ARCHITECTURES="win32"
 
 for arch in $ARCHITECTURES; do
 	b=buildslave-$arch
