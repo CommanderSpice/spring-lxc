@@ -28,7 +28,7 @@ for arch in $ARCHITECTURES; do
 		;;
 		"win32")
 			lxc exec $b -- /install/install-win32.sh
-			lxc exec $b -- /install/install-mxe.sh
+			lxc exec $b -- /install/install-mxe.sh /home/buildbot
 			lxc exec $b -- /install/setup-auth.sh
 		break
 		;;
