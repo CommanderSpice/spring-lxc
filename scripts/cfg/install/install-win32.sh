@@ -3,6 +3,8 @@
 set -e
 source $(dirname $0)/make_static_libs_common.sh
 
+dpkg --add-architecture i386
+
 apt update
 apt -y install \
 	ninja-build \
@@ -10,7 +12,8 @@ apt -y install \
 	autossh \
 	pwgen \
 	default-jre default-jdk \
-	nsis
+	nsis \
+	wine:i386
 
 # http://mxe.cc/#requirements-debian
 apt -y install \
