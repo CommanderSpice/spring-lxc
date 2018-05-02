@@ -9,8 +9,8 @@ apt -y install \
 	buildbot-slave \
 	autossh \
 	pwgen \
-	default-jre default-jdk
-
+	default-jre default-jdk \
+	nsis
 
 # http://mxe.cc/#requirements-debian
 apt -y install \
