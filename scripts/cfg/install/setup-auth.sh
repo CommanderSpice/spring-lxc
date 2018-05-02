@@ -6,13 +6,14 @@ BUILDBOTDIR=/home/buildbot
 BUILDSLAVECFG=$BUILDBOTDIR/buildbot.tac
 
 usermod -d "$BUILDBOTDIR" buildbot
+
 rm -rf "$BUILDBOTDIR/.ssh"
 mkdir -p "$BUILDBOTDIR/.ssh"
 
 
 
 if [ -s $BUILDSLAVECFG ]; then
-	PASSWORD=$(grep password $BUILDSLAVECFG)
+	PASSWORD=$(grep "passwd =" $BUILDSLAVECFG)
 else
 	PASSWORD=$(pwgen 64 1)
 	buildslave create-slave "$BUILDBOTDIR" localhost:9999 "$HOSTNAME" "$PASSWORD"
