@@ -5,9 +5,11 @@ source $(dirname $0)/make_static_libs_common.sh
 
 apt update
 apt -y install \
-        buildbot-slave \
+	ninja-build \
+	buildbot-slave \
 	autossh \
-	pwgen
+	pwgen \
+	default-jre default-jdk
 
 
 # http://mxe.cc/#requirements-debian
