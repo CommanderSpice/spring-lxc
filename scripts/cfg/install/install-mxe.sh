@@ -26,7 +26,7 @@ git reset --hard $COMMIT
 (
 	echo 'JOBS := 2'
 	echo 'MXE_TARGETS := i686-w64-mingw32.static.posix'
-	echo 'LOCAL_PKG_LIST := cc cmake-conf'
+	echo 'LOCAL_PKG_LIST := cc cmake-conf boost'
 	echo '.DEFAULT_GOAL  := local-pkg-list'
 	echo 'local-pkg-list: $(LOCAL_PKG_LIST)'
 ) > settings.mk
