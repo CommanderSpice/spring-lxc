@@ -6,7 +6,7 @@ SCRIPT=$(realpath $0)
 SCRIPTPATH=$(dirname $SCRIPT)
 CFG=$SCRIPTPATH/cfg
 LOCAL=$SCRIPTPATH/local
-ARCHITECTURES="x64 i386 win32"
+ARCHITECTURES="x64 i686 win32"
 #ARCHITECTURES="win32"
 
 for arch in $ARCHITECTURES; do
@@ -20,8 +20,8 @@ for arch in $ARCHITECTURES; do
 	case $arch in
 		"x64")
 		;;
-		"i386")
-			lxc exec $b -- /install/setup-linux.sh
+		"i686")
+			lxc exec $b -- /install/install-linux.sh
 			lxc exec $b -- /install/make_static_libs.sh /home/buildbot/lib
 			lxc exec $b -- /install/setup-auth.sh
 		break
