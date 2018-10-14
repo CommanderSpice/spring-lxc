@@ -50,9 +50,15 @@ wget https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.tgz
 ${MAKE} GLEW_PREFIX=${WORKDIR} GLEW_DEST=${WORKDIR} LIBDIR=${LIBDIR}
 ${MAKE} GLEW_PREFIX=${WORKDIR} GLEW_DEST=${WORKDIR} LIBDIR=${LIBDIR} install
 
-# curl
+# openssl
+wget https://www.openssl.org/source/openssl-1.1.1.tar.gz
+./config no-ssl3 no-comp no-shared no-dso no-weak-ssl-ciphers --prefix ${LIBDIR}
+${MAKE}
+${MAKE} install
 
+
+# curl
 wget https://curl.haxx.se/download/curl-7.61.1.tar.gz
-./configure --with-pic --disable-shared --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --prefix ${WORKDIR}
+./configure --with-pic --disable-shared --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --with-ssl=${WORKDIR} --prefix ${WORKDIR}
 ${MAKE}
 ${MAKE} install
