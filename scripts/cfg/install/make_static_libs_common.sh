@@ -6,11 +6,6 @@ if [ "$container" != "lxc" ]; then
         exit 1
 fi
 
-if [ ! -d "$1" ]; then
-	echo "Destination directory '$1' doesn't exist. usage: $0 <destdir>"
-	exit 1
-fi
-
 export WORKDIR=$1
 export TMPDIR=${WORKDIR}/tmp
 export INCLUDEDIR=${WORKDIR}/include

@@ -3,6 +3,10 @@
 set -e
 source $(dirname $0)/make_static_libs_common.sh
 
+if [ ! -d "$WORKDIR" ]; then
+        echo "Destination directory '$WORKDIR' doesn't exist. usage: $0 <destdir>"
+        exit 1
+fi
 
 # zlib
 wget https://www.zlib.net/zlib-1.2.11.tar.gz
