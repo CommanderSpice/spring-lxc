@@ -7,7 +7,7 @@ if [ "$container" != "lxc" ]; then
 fi
 
 if [ ! -d "$1" ]; then
-	echo "Missing destination directory. usage: $0 <destdir>"
+	echo "Destination directory '$1' doesn't exist. usage: $0 <destdir>"
 	exit 1
 fi
 
