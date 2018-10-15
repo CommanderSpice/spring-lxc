@@ -52,7 +52,7 @@ ${MAKE} GLEW_PREFIX=${WORKDIR} GLEW_DEST=${WORKDIR} LIBDIR=${LIBDIR} install
 
 # openssl
 wget https://www.openssl.org/source/openssl-1.1.1.tar.gz
-./config no-ssl3 no-comp no-shared no-dso no-weak-ssl-ciphers --prefix ${LIBDIR}
+./config no-ssl3 no-comp no-shared no-dso no-weak-ssl-ciphers --prefix=${LIBDIR}
 ${MAKE}
 ${MAKE} install
 
