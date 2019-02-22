@@ -15,7 +15,7 @@ apt -y install \
 	nsis \
 	wine:i386
 
-# http://mxe.cc/#requirements-debian
+# https://mxe.cc/#requirements-debian
 apt -y install \
     autoconf \
     automake \
@@ -36,6 +36,7 @@ apt -y install \
     libssl-dev \
     libtool-bin \
     libxml-parser-perl \
+    lzip \
     make \
     openssl \
     p7zip-full \
@@ -44,9 +45,7 @@ apt -y install \
     pkg-config \
     python \
     ruby \
-    scons \
     sed \
     unzip \
     wget \
     xz-utils
-
