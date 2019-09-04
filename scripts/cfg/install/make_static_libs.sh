@@ -36,7 +36,7 @@ ${MAKE} install
 
 
 # libIL (DevIL)
-wget https://api.github.com/repos/DentonW/DevIL/tarball/e34284a7e07763769f671a74b4fec718174ad862
+wget https://api.github.com/repos/spring/DevIL/tarball/ee8e056bdd27d93ccc57da423f2e939c336630d4
 cmake DevIL -DCMAKE_CXX_FLAGS=-fPIC -DBUILD_SHARED_LIBS=0 -DCMAKE_INSTALL_PREFIX=${WORKDIR} \
         -DPNG_PNG_INCLUDE_DIR=${INCLUDEDIR} -DPNG_LIBRARY_RELEASE=${LIBDIR}/libpng.a \
         -DJPEG_INCLUDE_DIR=${INCLUDEDIR} -DJPEG_LIBRARY=${LIBDIR}/libjpeg.a \
