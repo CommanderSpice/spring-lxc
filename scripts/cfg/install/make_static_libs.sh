@@ -17,13 +17,13 @@ ${MAKE}
 ${MAKE} install
 
 # libpng
-wget https://prdownloads.sourceforge.net/libpng/libpng-1.6.34.tar.gz
+wget https://prdownloads.sourceforge.net/libpng/libpng-1.6.37.tar.gz
 #./configure --enable-static --prefix ${WORKDIR}
 ${MAKE} -f scripts/makefile.linux CFLAGS="-fPIC -DPIC" ZLIBLIB=${LIBDIR} ZLIBINC=${INCLUDEDIR} prefix=${WORKDIR}
 ${MAKE} -f scripts/makefile.linux prefix=${WORKDIR} install
 
 # libjpeg
-wget http://www.ijg.org/files/jpegsrc.v9b.tar.gz
+wget https://www.ijg.org/files/jpegsrc.v9c.tar.gz
 ./configure --with-pic --prefix ${WORKDIR}
 ${MAKE}
 ${MAKE} install
@@ -57,14 +57,14 @@ ${MAKE} GLEW_PREFIX=${WORKDIR} GLEW_DEST=${WORKDIR} LIBDIR=${LIBDIR}
 ${MAKE} GLEW_PREFIX=${WORKDIR} GLEW_DEST=${WORKDIR} LIBDIR=${LIBDIR} install
 
 # openssl
-wget https://www.openssl.org/source/openssl-1.1.1.tar.gz
+wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
 ./config no-ssl3 no-comp no-shared no-dso no-weak-ssl-ciphers no-tests no-deprecated --prefix=${WORKDIR}
 ${MAKE}
 ${MAKE} install_sw
 
 
 # curl
-wget https://curl.haxx.se/download/curl-7.61.1.tar.gz
+wget https://curl.haxx.se/download/curl-7.65.3.tar.gz
 ./configure --with-pic --disable-shared --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --with-ssl=${WORKDIR} --prefix ${WORKDIR}
 ${MAKE}
 ${MAKE} install
