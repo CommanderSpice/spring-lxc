@@ -89,3 +89,16 @@ else
 	${MAKE} GLEW_PREFIX=${WORKDIR} GLEW_DEST=${WORKDIR} LIBDIR=${LIBDIR} install
 
 fi
+
+# openssl
+wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
+./config no-ssl3 no-comp no-shared no-dso no-weak-ssl-ciphers no-tests no-deprecated --prefix=${WORKDIR}
+${MAKE}
+${MAKE} install_sw
+
+# curl
+wget https://curl.haxx.se/download/curl-7.65.3.tar.gz
+./configure --with-pic --disable-shared --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --with-ssl=${WORKDIR} --prefix ${WORKDIR}
+${MAKE}
+${MAKE} install
+
