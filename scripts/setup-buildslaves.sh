@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -7,10 +7,15 @@ SCRIPTPATH=$(dirname $SCRIPT)
 CFG=$SCRIPTPATH/cfg
 LOCAL=$SCRIPTPATH/local
 ARCHITECTURES="x64 i686 win32"
-#ARCHITECTURES="win32"
+ARCHITECTURES="x64"
 
 CONTAINERDIR=$(lxc-config lxc.lxcpath)
-if [ -n "$CONTAINERDIR" ] || ! [ -d "$CONTAINERDIR" ]; then
+if ! [ -n "$CONTAINERDIR" ]; then
+	echo "CONTAINERDIR not set!"
+	exit 1
+fi
+
+if  ! [ -d "$CONTAINERDIR" ]; then
 	echo "lxc.lxcpath '$CONTAINERDIR' doesn't exist!"
 	exit 1
 fi
@@ -19,18 +24,17 @@ for arch in $ARCHITECTURES; do
 	b=buildslave-$arch
 	echo $b
 	CONTAINERROOT=$CONTAINERDIR/$b/rootfs
-	if ! [ -d "$CONTAINERROOT"]; then
+	if ! [ -d "$CONTAINERROOT" ]; then
 		echo "rootfs '$CONTAINERROOT' doesn't exist!"
 		exit 1
 	fi
 	rsync -av "$CFG"/ "$CONTAINERROOT/"
 	rsync -av "$LOCAL"/ "$CONTAINERROOT"/
+	cp "/etc/resolv.conf" "$CONTAINERROOT"/etc/resolv.conf
 
 	case $arch in
-		"x64")
-		;;
-		"i686")
-			lxc-attach --name $b -- /install/install-linux.sh
+		"i686" | "x64")
+			lxc-attach --name $b -- /install/install-linux.sh /home/buildbot/lib
 			lxc-attach --name $b -- /install/make_static_libs.sh /home/buildbot/lib
 			lxc-attach --name $b -- /install/setup-auth.sh
 		break

@@ -1,3 +1,4 @@
-deb http://archive.ubuntu.com/ubuntu xenial main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu xenial-updates main restricted universe multiverse
-deb http://security.ubuntu.com/ubuntu xenial-security main restricted universe multiverse
+deb http://ftp.tu-chemnitz.de/debian/ buster contrib main non-free
+deb http://ftp.tu-chemnitz.de/debian/ buster-updates contrib main non-free
+deb http://deb.debian.org/debian-security/ buster/updates main
+
