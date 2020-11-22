@@ -9,7 +9,7 @@ apt -y install g++ make cmake p7zip-full ninja-build \
 	libopenal-dev libvorbis-dev \
 	libogg-dev libsdl2-dev libfreetype6-dev libfontconfig1-dev \
 	freeglut3-dev libgif-dev \
-	buildbot-slave \
+	buildbot-worker \
 	pwgen \
 	autossh \
 	libboost-test-dev \

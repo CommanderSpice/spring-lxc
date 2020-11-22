@@ -16,7 +16,7 @@ if [ -s $BUILDSLAVECFG ]; then
 	PASSWORD=$(grep "passwd =" $BUILDSLAVECFG)
 else
 	PASSWORD=$(pwgen 64 1)
-	buildslave create-slave "$BUILDBOTDIR" localhost:9999 "$HOSTNAME" "$PASSWORD"
+	buildbot-worker create-worker "$BUILDBOTDIR" localhost:9999 "$HOSTNAME" "$PASSWORD"
 fi
 
 if ! [ -s "$BUILDBOTDIR/.ssh/id_rsa" ]; then

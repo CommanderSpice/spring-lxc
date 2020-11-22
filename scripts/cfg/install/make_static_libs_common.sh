@@ -44,6 +44,7 @@ function wget {
 	fi
 
 	cd $(mktemp -d)
+	echo $(pwd)
 	tar xifzv $FILENAME --strip-components=1
 }
 
