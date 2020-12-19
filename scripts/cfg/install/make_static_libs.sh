@@ -104,8 +104,9 @@ ${MAKE}
 ${MAKE} install
 
 # fontconfig
-#wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.13.93.tar.gz
-#./configure --with-pic --disable-shared  --disable-docs --prefix=${WORKDIR}
+wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.13.93.tar.gz
+./configure --with-pic --disable-shared  --disable-docs --prefix=${WORKDIR} --with-sysroot=${LIBDIR}
+${MAKE} install
 
 # freetype
 wget https://prdownloads.sourceforge.net/freetype/freetype-2.10.4.tar.gz
