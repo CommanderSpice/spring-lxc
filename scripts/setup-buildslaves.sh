@@ -56,7 +56,7 @@ for arch in $ARCHITECTURES; do
 	lxc-attach --name $b -- rm -rf /home/buildbot/lib/tmp /home/buildbot/lib/download /install
 	lxc-attach --name $b -- systemctl daemon-reload
 	lxc-attach --name $b -- systemctl start autossh
-	lxc-attach --name $b -- systemctl start buildslave
+	lxc-attach --name $b -- systemctl start buildbot-worker@spring
 	lxc-attach --name $b -- chown -R buildbot:buildbot /home/buildbot
 done
 

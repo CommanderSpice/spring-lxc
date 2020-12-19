@@ -3,7 +3,8 @@
 set -e
 
 BUILDBOTDIR=/home/buildbot
-BUILDSLAVECFG=$BUILDBOTDIR/buildbot.tac
+CONFIGDIR=/var/lib/buildbot/workers/spring
+BUILDSLAVECFG=$CONFIGDIR/buildbot.tac
 
 usermod -d "$BUILDBOTDIR" buildbot
 
@@ -16,7 +17,7 @@ if [ -s $BUILDSLAVECFG ]; then
 	PASSWORD=$(grep "passwd =" $BUILDSLAVECFG)
 else
 	PASSWORD=$(pwgen 64 1)
-	buildbot-worker create-worker "$BUILDBOTDIR" localhost:9999 "$HOSTNAME" "$PASSWORD"
+	buildbot-worker create-worker "$CONFIGDIR" localhost:9999 "$HOSTNAME" "$PASSWORD"
 fi
 
 if ! [ -s "$BUILDBOTDIR/.ssh/id_rsa" ]; then
@@ -27,8 +28,9 @@ chmod 700 "$BUILDBOTDIR/.ssh"
 chown -R buildbot:buildbot $BUILDBOTDIR
 
 systemctl enable /etc/systemd/system/autossh.service
+systemctl enable buildbot-worker@spring.service
 
-echo "Public key:"
+echo -n "Public key: ssh-rsa "
 cat "$BUILDBOTDIR/.ssh/id_rsa.pub"
 echo "buildslave username: $HOSTNAME password: $PASSWORD"
 

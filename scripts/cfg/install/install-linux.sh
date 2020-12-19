@@ -14,6 +14,6 @@ apt -y install g++ make cmake p7zip-full ninja-build \
 	autossh \
 	libboost-test-dev \
 	chrpath \
-	wget
+	wget \
+	git
 
-apt -y remove snapd

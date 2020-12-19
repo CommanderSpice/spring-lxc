@@ -1,0 +1,9 @@
+WORKER_RUNNER=/usr/bin/buildslave
+
+WORKER_ENABLED[1]=1
+WORKER_NAME[1]="buildslave #1"
+WORKER_USER[1]="buildbot"
+WORKER_BASEDIR[1]="/home/buildbot"
+WORKER_OPTIONS[1]=""
+WORKER_PREFIXCMD[1]=""
+

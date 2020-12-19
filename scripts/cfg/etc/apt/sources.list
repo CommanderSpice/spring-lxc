@@ -1,4 +1,4 @@
-deb http://ftp.tu-chemnitz.de/debian/ buster contrib main non-free
-deb http://ftp.tu-chemnitz.de/debian/ buster-updates contrib main non-free
-deb http://deb.debian.org/debian-security/ buster/updates main
+deb http://ftp.tu-chemnitz.de/debian/ bullseye contrib main non-free
+deb http://ftp.tu-chemnitz.de/debian/ bullseye-updates contrib main non-free
+#deb http://deb.debian.org/debian-security/ bullseye/updates main
 
