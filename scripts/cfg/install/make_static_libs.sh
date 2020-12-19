@@ -103,3 +103,11 @@ wget https://curl.se/download/curl-7.74.0.tar.gz
 ${MAKE}
 ${MAKE} install
 
+# fontconfig
+#wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.13.93.tar.gz
+#./configure --with-pic --disable-shared  --disable-docs --prefix=${WORKDIR}
+
+# freetype
+wget https://prdownloads.sourceforge.net/freetype/freetype-2.10.4.tar.gz
+./configure --with-pic --disable-shared --without-brotli --prefix=${WORKDIR} --with-sysroot=${LIBDIR}
+${MAKE} install
