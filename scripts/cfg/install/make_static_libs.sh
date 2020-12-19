@@ -3,7 +3,6 @@
 set -e
 source $(dirname $0)/make_static_libs_common.sh
 
-: '
 # zlib
 wget https://www.zlib.net/zlib-1.2.11.tar.gz
 if [ "${TARGETOS}" = "win32" ]; then
@@ -46,7 +45,6 @@ fi
 ${MAKE}
 ${MAKE} install
 
-'
 # libIL (DevIL)
 wget https://api.github.com/repos/spring/DevIL/tarball/d46aa9989f502b89de06801925d20e53d220c1b4
 
@@ -76,8 +74,8 @@ ${MAKE} install
 
 # libunwind
 if [ ! "${TARGETOS}" = "win32" ]; then
-	wget https://download.savannah.nongnu.org/releases/libunwind/libunwind-1.2.1.tar.gz
-	./configure --with-pic --disable-minidebuginfo --prefix ${WORKDIR}
+	wget https://download.savannah.nongnu.org/releases/libunwind/libunwind-1.4.0.tar.gz
+	CFLAGS="${CFLAGS} -fcommon" ./configure --with-pic --disable-minidebuginfo --prefix ${WORKDIR}
 	${MAKE}
 	${MAKE} install
 fi
