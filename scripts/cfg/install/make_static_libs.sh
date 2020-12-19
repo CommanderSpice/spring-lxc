@@ -15,7 +15,7 @@ else
 fi
 
 # libpng
-wget https://prdownloads.sourceforge.net/libpng/libpng-1.6.34.tar.gz
+wget https://prdownloads.sourceforge.net/libpng/libpng-1.6.37.tar.gz
 if [ "${TARGETOS}" = "win32" ]; then
 	 ./configure --host=i686-w64-mingw32.static.posix
 	${MAKE}
@@ -36,7 +36,7 @@ ${MAKE}
 ${MAKE} install
 
 # libtiff
-wget https://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz
+wget https://download.osgeo.org/libtiff/tiff-4.1.0.tar.gz
 if [ "${TARGETOS}" = "win32" ]; then
 	./configure --with-pic --disable-lzma --disable-jbig --prefix ${WORKDIR} --host=i686-w64-mingw32.static.posix
 else
@@ -92,14 +92,14 @@ else
 fi
 
 # openssl
-wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
+wget https://www.openssl.org/source/openssl-1.1.1i.tar.gz
 ./config no-ssl3 no-comp no-shared no-dso no-weak-ssl-ciphers no-tests no-deprecated --prefix=${WORKDIR}
 ${MAKE}
 ${MAKE} install_sw
 
 # curl
-wget https://curl.haxx.se/download/curl-7.65.3.tar.gz
-./configure --with-pic --disable-shared --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --with-ssl=${WORKDIR} --prefix ${WORKDIR}
+wget https://curl.se/download/curl-7.74.0.tar.gz
+./configure --with-pic --disable-shared --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --without-brotli --with-ssl=${WORKDIR} --prefix ${WORKDIR}
 ${MAKE}
 ${MAKE} install
 
