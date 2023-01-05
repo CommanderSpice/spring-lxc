@@ -3,8 +3,8 @@
 set -e
 source $(dirname $0)/make_static_libs_common.sh
 
-# zlib
-wget https://www.zlib.net/zlib-1.2.11.tar.gz
+# zlib https://zlib.net/
+wget https://www.zlib.net/zlib-1.2.13.tar.gz
 if [ "${TARGETOS}" = "win32" ]; then
 	${MAKE} -f win32/Makefile.gcc PREFIX=i686-w64-mingw32.static.posix-
 	${MAKE} -f win32/Makefile.gcc PREFIX=i686-w64-mingw32.static.posix- INCLUDE_PATH=${WORKDIR}/include LIBRARY_PATH=${WORKDIR}/lib BINARY_PATH=${WORKDIR}/bin  install
@@ -14,19 +14,19 @@ else
 	${MAKE} install
 fi
 
-# libpng
-wget https://prdownloads.sourceforge.net/libpng/libpng-1.6.37.tar.gz
+# libpng http://www.libpng.org/pub/png/libpng.html
+wget https://prdownloads.sourceforge.net/libpng/libpng-1.6.39.tar.gz
 if [ "${TARGETOS}" = "win32" ]; then
 	 ./configure --host=i686-w64-mingw32.static.posix
 	${MAKE}
 	${MAKE} prefix=${WORKDIR} install
 else
-	${MAKE} -f scripts/makefile.linux CFLAGS="-fPIC -DPIC" ZLIBLIB=${LIBDIR} ZLIBINC=${INCLUDEDIR} prefix=${WORKDIR}
-	${MAKE} -f scripts/makefile.linux prefix=${WORKDIR} install
+	cmake . -DZLIB_LIBRARIES=${LIBDIR} -DZLIB_INCLUDE_DIR=${INCLUDEDIR} -DCMAKE_INSTALL_PREFIX=${WORKDIR} -DPNG_SHARED=OFF -DPNG_TESTS=OFF
+	make install
 fi
 
-# libjpeg
-wget http://www.ijg.org/files/jpegsrc.v9b.tar.gz
+# libjpeg https://www.ijg.org/
+wget http://www.ijg.org/files/jpegsrc.v9e.tar.gz
 if [ "${TARGETOS}" = "win32" ]; then
 	./configure --with-pic --prefix ${WORKDIR} --host=i686-w64-mingw32.static.posix
 else
@@ -35,8 +35,8 @@ fi
 ${MAKE}
 ${MAKE} install
 
-# libtiff
-wget https://download.osgeo.org/libtiff/tiff-4.1.0.tar.gz
+# libtiff https://download.osgeo.org/libtiff/
+wget https://download.osgeo.org/libtiff/tiff-4.5.0.tar.gz
 if [ "${TARGETOS}" = "win32" ]; then
 	./configure --with-pic --disable-lzma --disable-jbig --prefix ${WORKDIR} --host=i686-w64-mingw32.static.posix
 else
@@ -72,16 +72,16 @@ ${MAKE}
 ${MAKE} install
 
 
-# libunwind
+# libunwind https://github.com/libunwind/libunwind/releases/
 if [ ! "${TARGETOS}" = "win32" ]; then
-	wget https://download.savannah.nongnu.org/releases/libunwind/libunwind-1.4.0.tar.gz
+	wget https://github.com/libunwind/libunwind/releases/download/v1.6.2/libunwind-1.6.2.tar.gz
 	CFLAGS="${CFLAGS} -fcommon" ./configure --with-pic --disable-minidebuginfo --prefix ${WORKDIR}
 	${MAKE}
 	${MAKE} install
 fi
 
-# glew
-wget https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.tgz
+# glew https://github.com/nigels-com/glew/releases/
+wget https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0.tgz
 if [ "${TARGETOS}" = "win32" ]; then
 	${MAKE} GLEW_PREFIX=${WORKDIR} GLEW_DEST=${WORKDIR} LIBDIR=${LIBDIR} SYSTEM=linux-mingw32 HOST=i686-w64-mingw32.static.posix
 	${MAKE} GLEW_PREFIX=${WORKDIR} GLEW_DEST=${WORKDIR} LIBDIR=${LIBDIR} SYSTEM=linux-mingw32 install
@@ -91,24 +91,26 @@ else
 
 fi
 
-# openssl
-wget https://www.openssl.org/source/openssl-1.1.1i.tar.gz
-./config no-ssl3 no-comp no-shared no-dso no-weak-ssl-ciphers no-tests no-deprecated --prefix=${WORKDIR}
+'
+# openssl https://www.openssl.org/source/
+wget https://www.openssl.org/source/openssl-3.0.7.tar.gz
+./config no-ssl2 no-ssl3 no-comp no-shared no-dso no-weak-ssl-ciphers no-tests no-deprecated --prefix=${WORKDIR} --libdir=${LIBDIR}
 ${MAKE}
 ${MAKE} install_sw
 
-# curl
-wget https://curl.se/download/curl-7.74.0.tar.gz
-./configure --with-pic --disable-shared --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --without-brotli --with-ssl=${WORKDIR} --prefix ${WORKDIR}
+: '
+# curl https://curl.se/download.html
+wget https://curl.se/download/curl-7.87.0.tar.gz
+./configure --with-pic --disable-shared --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --without-brotli --disable-ntlm-wb --disable-ntlm --with-ssl=${WORKDIR} --prefix ${WORKDIR}
 ${MAKE}
 ${MAKE} install
 
-# fontconfig
-wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.13.93.tar.gz
+# fontconfig https://www.freedesktop.org/software/fontconfig/release/
+wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.1.tar.gz
 ./configure --with-pic --disable-shared  --disable-docs --prefix=${WORKDIR} --with-sysroot=${LIBDIR}
 ${MAKE} install
 
-# freetype
-wget https://prdownloads.sourceforge.net/freetype/freetype-2.10.4.tar.gz
+# freetype https://sourceforge.net/projects/freetype/files/freetype2/
+wget https://prdownloads.sourceforge.net/freetype/freetype-2.12.1.tar.gz
 ./configure --with-pic --disable-shared --without-brotli --prefix=${WORKDIR} --with-sysroot=${LIBDIR}
 ${MAKE} install
