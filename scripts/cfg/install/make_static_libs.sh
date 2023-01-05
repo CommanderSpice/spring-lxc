@@ -21,7 +21,7 @@ if [ "${TARGETOS}" = "win32" ]; then
 	${MAKE}
 	${MAKE} prefix=${WORKDIR} install
 else
-	cmake . -DZLIB_LIBRARIES=${LIBDIR} -DZLIB_INCLUDE_DIR=${INCLUDEDIR} -DCMAKE_INSTALL_PREFIX=${WORKDIR} -DPNG_SHARED=OFF -DPNG_TESTS=OFF
+	cmake . -DZLIB_LIBRARY=${LIBDIR}/libz.a -DZLIB_INCLUDE_DIR=${INCLUDEDIR} -DCMAKE_INSTALL_PREFIX=${WORKDIR} -DPNG_SHARED=OFF -DPNG_TESTS=OFF
 	make install
 fi
 
@@ -91,14 +91,12 @@ else
 
 fi
 
-'
 # openssl https://www.openssl.org/source/
 wget https://www.openssl.org/source/openssl-3.0.7.tar.gz
 ./config no-ssl2 no-ssl3 no-comp no-shared no-dso no-weak-ssl-ciphers no-tests no-deprecated --prefix=${WORKDIR} --libdir=${LIBDIR}
 ${MAKE}
 ${MAKE} install_sw
 
-: '
 # curl https://curl.se/download.html
 wget https://curl.se/download/curl-7.87.0.tar.gz
 ./configure --with-pic --disable-shared --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --without-brotli --disable-ntlm-wb --disable-ntlm --with-ssl=${WORKDIR} --prefix ${WORKDIR}
@@ -117,3 +115,12 @@ ${MAKE} install
 
 # libgit2 https://github.com/libgit2/libgit2/releases
 wget https://github.com/libgit2/libgit2/archive/refs/tags/v1.5.0.tar.gz
+cmake . -DUSE_SSH=FALSE \
+	-DUSE_HTTPS=OFF \
+	-DBUILD_TESTS=OFF \
+	-DBUILD_CLI=OFF \
+	-DBUILD_SHARED_LIBS=FALSE \
+	-DUSE_NTLMCLIENT=FALSE \
+	-DZLIB_LIBRARY_RELEASE=${LIBDIR}/libz.a -DZLIB_INCLUDE_DIR=${INCLUDEDIR} \
+	-DCMAKE_INSTALL_PREFIX=${WORKDIR}
+make install
