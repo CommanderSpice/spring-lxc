@@ -114,3 +114,6 @@ ${MAKE} install
 wget https://prdownloads.sourceforge.net/freetype/freetype-2.12.1.tar.gz
 ./configure --with-pic --disable-shared --without-brotli --prefix=${WORKDIR} --with-sysroot=${LIBDIR}
 ${MAKE} install
+
+# libgit2 https://github.com/libgit2/libgit2/releases
+wget https://github.com/libgit2/libgit2/archive/refs/tags/v1.5.0.tar.gz
