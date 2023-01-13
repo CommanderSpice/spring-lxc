@@ -45,6 +45,6 @@ function wget {
 
 	cd $(mktemp -d)
 	echo $(pwd)
-	tar xifzv $FILENAME --strip-components=1
+	tar xifz $FILENAME --strip-components=1
 }
 
