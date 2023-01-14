@@ -3,18 +3,22 @@
 set -e
 source $(dirname $0)/make_static_libs_common.sh
 
+: '
 if [ "${TARGETOS}" != "win32" ]; then
 	wget https://musl.libc.org/releases/musl-1.2.3.tar.gz
 	./configure --prefix=${WORKDIR} --disable-shared
 	${MAKE}
 	${MAKE} install
 fi
+'
 
 export PATH=${WORKDIR}/bin:$PATH
-export MUSL_CC=${WORKDIR}/bin/musl-gcc
+#export MUSL_CC=${WORKDIR}/bin/musl-gcc
+export MUSL_CC=cc
 export CC=$MUSL_CC
-export HOST=x86_64-pc-linux-musl
+#export HOST=x86_64-pc-linux-musl
 #export HOST=i686-w64-mingw32.static.posix
+HOST=x86_64-linux-gnu
 
 # zlib https://zlib.net/
 wget https://www.zlib.net/zlib-1.2.13.tar.gz
@@ -107,7 +111,7 @@ ${MAKE} install_sw
 
 # curl https://curl.se/download.html
 wget https://curl.se/download/curl-7.87.0.tar.gz
-./configure --with-pic --disable-shared --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --without-brotli --disable-ntlm-wb --disable-ntlm --with-ssl=${WORKDIR} --prefix ${WORKDIR} --host=$HOST
+./configure --with-pic --disable-shared --enable-static --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --without-brotli --disable-ntlm-wb --disable-ntlm --with-ssl=${WORKDIR} --prefix ${WORKDIR} --host=$HOST
 ${MAKE}
 ${MAKE} install
 
