@@ -16,6 +16,8 @@ export PATH=${WORKDIR}/bin:$PATH
 #export MUSL_CC=${WORKDIR}/bin/musl-gcc
 export MUSL_CC=cc
 export CC=$MUSL_CC
+export PKG_CONFIG_PATH=${LIBDIR}/pkgconfig
+export PKG_CONFIG=/usr/bin/pkg-config
 #export HOST=x86_64-pc-linux-musl
 #export HOST=i686-w64-mingw32.static.posix
 HOST=x86_64-linux-gnu
@@ -116,18 +118,17 @@ ${MAKE}
 ${MAKE} install
 
 
-unset CC
-# fontconfig https://www.freedesktop.org/software/fontconfig/release/
-wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.1.tar.gz
-./configure --with-pic --disable-shared  --disable-docs --prefix=${WORKDIR} --with-sysroot=${LIBDIR} --host=$HOST
-${MAKE} install
-export CC=$MUSL_CC
-
-
 # freetype https://sourceforge.net/projects/freetype/files/freetype2/
 wget https://prdownloads.sourceforge.net/freetype/freetype-2.12.1.tar.gz
 ./configure --with-pic --disable-shared --without-brotli --prefix=${WORKDIR} --with-sysroot=${LIBDIR} --host=$HOST
 ${MAKE} install
+
+
+# fontconfig https://www.freedesktop.org/software/fontconfig/release/
+wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.1.tar.gz
+./configure --with-pic --disable-shared  --disable-docs --prefix=${WORKDIR} --host=$HOST
+${MAKE} install
+
 
 # libgit2 https://github.com/libgit2/libgit2/releases
 wget https://github.com/libgit2/libgit2/archive/refs/tags/v1.5.0.tar.gz
@@ -140,4 +141,3 @@ cmake . -DUSE_SSH=FALSE \
 	-DZLIB_LIBRARY_RELEASE=${LIBDIR}/libz.a -DZLIB_INCLUDE_DIR=${INCLUDEDIR} \
 	-DCMAKE_INSTALL_PREFIX=${WORKDIR}
 make install
-
