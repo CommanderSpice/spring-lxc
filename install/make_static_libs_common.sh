@@ -1,11 +1,6 @@
 
 set -e
 
-if [ "$container" != "lxc" ]; then
-        echo "Not running inside lxc container, exiting..."
-        exit 1
-fi
-
 if [ $# -eq 0 ]; then
 	echo "Missing destination directory"
 	exit 2
