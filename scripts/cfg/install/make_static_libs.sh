@@ -113,10 +113,9 @@ ${MAKE} install_sw
 
 # curl https://curl.se/download.html
 wget https://curl.se/download/curl-7.87.0.tar.gz
-./configure --with-pic --disable-shared --enable-static --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --without-brotli --disable-ntlm-wb --disable-ntlm  --with-ssl=${WORKDIR} --prefix ${WORKDIR} --host=$HOST --disable-netrc
+./configure --with-pic --disable-shared --enable-static --disable-manual --disable-dict --disable-file --disable-ftp --disable-gopher --disable-imap --disable-pop3 --disable-rtsp --disable-smb --disable-smtp --disable-telnet --disable-tftp --disable-unix-sockets --without-brotli --disable-ntlm-wb --disable-ntlm  --with-ssl=${WORKDIR} --prefix ${WORKDIR} --host=$HOST --disable-netrc --enable-symbol-hiding --disable-alt-svc --disable-mqtt
 ${MAKE}
 ${MAKE} install
-
 
 # freetype https://sourceforge.net/projects/freetype/files/freetype2/
 wget https://prdownloads.sourceforge.net/freetype/freetype-2.12.1.tar.gz
