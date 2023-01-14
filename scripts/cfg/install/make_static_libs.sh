@@ -113,7 +113,7 @@ ${MAKE} install_sw
 
 # curl https://curl.se/download.html
 wget https://curl.se/download/curl-7.87.0.tar.gz
-./configure --with-pic --disable-shared --enable-static --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --without-brotli --disable-ntlm-wb --disable-ntlm --with-ssl=${WORKDIR} --prefix ${WORKDIR} --host=$HOST
+./configure --with-pic --disable-shared --enable-static --disable-manual --disable-dict --disable-file --disable-ftp --disable-ftps --disable-gopher --disable-imap --disable-imaps --disable-pop3 --disable-pop3s --disable-rtsp --disable-smb --disable-smbs --disable-smtp --disable-smtps --disable-telnet --disable-tftp --disable-unix-sockets --without-brotli --disable-ntlm-wb --disable-ntlm  --with-ssl=${WORKDIR} --prefix ${WORKDIR} --host=$HOST --disable-netrc
 ${MAKE}
 ${MAKE} install
 
