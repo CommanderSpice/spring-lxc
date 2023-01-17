@@ -107,7 +107,7 @@ fi
 
 # openssl https://www.openssl.org/source/
 wget https://www.openssl.org/source/openssl-3.0.7.tar.gz
-./config no-ssl2 no-ssl3 no-comp no-shared no-dso no-weak-ssl-ciphers no-tests no-deprecated --prefix=${WORKDIR} --libdir=${LIBDIR} -DOPENSSL_NO_SECURE_MEMORY
+./config no-ssl2 no-ssl3 no-comp no-shared no-dso no-engine no-weak-ssl-ciphers no-tests no-deprecated no-thread --prefix=${WORKDIR} --libdir=${LIBDIR} -DOPENSSL_NO_SECURE_MEMORY
 ${MAKE}
 ${MAKE} install_sw
 
