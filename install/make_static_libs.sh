@@ -122,17 +122,16 @@ wget https://github.com/libexpat/libexpat/releases/download/R_2_5_0/expat-2.5.0.
 cmake . -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=${WORKDIR} -DEXPAT_BUILD_TOOLS=OFF -DEXPAT_BUILD_EXAMPLES=OFF -DEXPAT_BUILD_FUZZERS=OFF -DEXPAT_BUILD_TESTS=OFF
 make install
 
+# freetype https://sourceforge.net/projects/freetype/files/freetype2/
+wget https://prdownloads.sourceforge.net/freetype/freetype-2.12.1.tar.gz
+./configure --with-pic --disable-shared --without-brotli --prefix=${WORKDIR} --with-sysroot=${LIBDIR} --host=$HOST
+${MAKE} install
 
 # fontconfig https://www.freedesktop.org/software/fontconfig/release/
 wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.1.tar.gz
 LIBS="${LIBDIR}/libz.a -lm"  ./configure --with-pic --disable-shared  --disable-docs --prefix=${WORKDIR} --host=$HOST --disable-cache-build
 ${MAKE} install
 
-
-# freetype https://sourceforge.net/projects/freetype/files/freetype2/
-wget https://prdownloads.sourceforge.net/freetype/freetype-2.12.1.tar.gz
-./configure --with-pic --disable-shared --without-brotli --prefix=${WORKDIR} --with-sysroot=${LIBDIR} --host=$HOST
-${MAKE} install
 
 # libogg https://github.com/xiph/ogg/releases/
 wget https://github.com/xiph/ogg/releases/download/v1.3.5/libogg-1.3.5.tar.gz
@@ -141,7 +140,7 @@ ${MAKE} install
 
 #libvorbis https://github.com/xiph/vorbis/releases
 wget https://github.com/xiph/vorbis/releases/download/v1.3.7/libvorbis-1.3.7.tar.gz
-./configure --prefix ${WORKDIR} --enable-shared=no --enable-static=yes --disable-oggtest
+./configure --prefix ${WORKDIR} --enable-shared=no --enable-static=yes --disable-oggtest --host=$HOST
 make install
 
 : '
