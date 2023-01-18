@@ -128,6 +128,101 @@ wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.1.t
 ./configure --with-pic --disable-shared  --disable-docs --prefix=${WORKDIR} --host=$HOST
 ${MAKE} install
 
+# libogg https://github.com/xiph/ogg/releases/
+wget https://github.com/xiph/ogg/releases/download/v1.3.5/libogg-1.3.5.tar.gz
+./configure --prefix ${WORKDIR} --enable-shared=no --enable-static=yes --host=$HOST
+${MAKE} install
+
+#libvorbis https://github.com/xiph/vorbis/releases
+wget https://github.com/xiph/vorbis/releases/download/v1.3.7/libvorbis-1.3.7.tar.gz
+./configure --prefix ${WORKDIR} --enable-shared=no --enable-static=yes --disable-oggtest
+make install
+
+: '
+# sdl https://github.com/libsdl-org/SDL/releases
+wget https://github.com/libsdl-org/SDL/releases/download/release-2.26.2/SDL2-2.26.2.tar.gz
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=${WORKDIR} -DBUILD_SHARED_LIBS=OFF \
+-DSDL_3DNOW:BOOL=OFF \
+-DSDL_ALSA:BOOL=OFF \
+-DSDL_ALTIVEC:BOOL=OFF \
+-DSDL_ARMNEON:BOOL=OFF \
+-DSDL_ARMSIMD:BOOL=OFF \
+-DSDL_ARTS:BOOL=OFF \
+-DSDL_ASAN:BOOL=OFF \
+-DSDL_ASSEMBLY:BOOL=ON \
+-DSDL_ASSERTIONS:STRING=auto \
+-DSDL_ATOMIC:BOOL=OFF \
+-DSDL_AUDIO:BOOL=OFF \
+-DSDL_BACKGROUNDING_SIGNAL:STRING=OFF \
+-DSDL_CLOCK_GETTIME:BOOL=OFF \
+-DSDL_CMAKE_DEBUG_POSTFIX:STRING=d \
+-DSDL_COCOA:BOOL=OFF \
+-DSDL_CPUINFO:BOOL=OFF \
+-DSDL_DIRECTFB:BOOL=OFF \
+-DSDL_DIRECTX:BOOL=OFF \
+-DSDL_DISKAUDIO:BOOL=OFF \
+-DSDL_DLOPEN:BOOL=OFF \
+-DSDL_DUMMYAUDIO:BOOL=OFF \
+-DSDL_DUMMYVIDEO:BOOL=OFF \
+-DSDL_DBUS:BOOL=OFF \
+-DSDL_IBUS:BOOL=OFF \
+-DSDL_ESD:BOOL=OFF \
+-DSDL_EVENTS:BOOL=ON \
+-DSDL_FILE:BOOL=OFF \
+-DSDL_FILESYSTEM:BOOL=OFF \
+-DSDL_FOREGROUNDING_SIGNAL:STRING=OFF \
+-DSDL_FUSIONSOUND:BOOL=OFF \
+-DSDL_GCC_ATOMICS:BOOL=OFF \
+-DSDL_HAPTIC:BOOL=OFF \
+-DSDL_HIDAPI:BOOL=OFF \
+-DSDL_HIDAPI_JOYSTICK:BOOL=OFF \
+-DSDL_JACK:BOOL=OFF \
+-DSDL_JOYSTICK:BOOL=OFF \
+-DSDL_KMSDRM:BOOL=OFF \
+-DSDL_LIBC:BOOL=ON \
+-DSDL_LIBSAMPLERATE:BOOL=OFF \
+-DSDL_LOADSO:BOOL=OFF \
+-DSDL_LOCALE:BOOL=OFF \
+-DSDL_METAL:BOOL=OFF \
+-DSDL_MMX:BOOL=ON \
+-DSDL_NAS:BOOL=OFF \
+-DSDL_OFFSCREEN:BOOL=OFF \
+-DSDL_OPENGL:BOOL=ON \
+-DSDL_OPENGLES:BOOL=OFF \
+-DSDL_OSS:BOOL=OFF \
+-DSDL_PIPEWIRE:BOOL=OFF \
+-DSDL_POWER:BOOL=OFF \
+-DSDL_PULSEAUDIO:BOOL=OFF \
+-DSDL_RENDER:BOOL=OFF \
+-DSDL_RENDER_D3D:BOOL=OFF \
+-DSDL_RENDER_METAL:BOOL=OFF \
+-DSDL_RPATH:BOOL=OFF \
+-DSDL_RPI:BOOL=OFF \
+-DSDL_SENSOR:BOOL=OFF \
+-DSDL_SHARED:BOOL=OFF \
+-DSDL_SNDIO:BOOL=OFF \
+-DSDL_SNDIO_SHARED:BOOL=OFF \
+-DSDL_SSE2:BOOL=ON \
+-DSDL_SSE3:BOOL=OFF \
+-DSDL_SSE:BOOL=ON \
+-DSDL_SSEMATH:BOOL=ON \
+-DSDL_STATIC:BOOL=ON \
+-DSDL_STATIC_PIC:BOOL=ON \
+-DSDL_TEST:BOOL=OFF \
+-DSDL_TIMERS:BOOL=OFF \
+-DSDL_VIDEO:BOOL=OFF \
+-DSDL_VIRTUAL_JOYSTICK:BOOL=OFF \
+-DSDL_VIVANTE:BOOL=OFF \
+-DSDL_VULKAN:BOOL=OFF \
+-DSDL_WASAPI:BOOL=OFF \
+-DSDL_WAYLAND:BOOL=OFF \
+-DSDL_WAYLAND_LIBDECOR_SHARED:BOOL=OFF \
+-DSDL_X11:BOOL=ON \
+-DSDL_XINPUT:BOOL=OFF \
+-DCMAKE_INSTALL_PREFIX=${WORKDIR}
+${MAKE} install
+'
 
 # libgit2 https://github.com/libgit2/libgit2/releases
 wget https://github.com/libgit2/libgit2/archive/refs/tags/v1.5.0.tar.gz
