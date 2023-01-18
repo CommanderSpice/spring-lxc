@@ -22,6 +22,34 @@ export PKG_CONFIG=/usr/bin/pkg-config
 #export HOST=i686-w64-mingw32.static.posix
 HOST=x86_64-linux-gnu
 
+
+: '
+if [ "${TARGETOS}" != "win32" ]; then
+
+export CPUS=$(nproc)
+export CC=gcc
+export PATH=${WORKDIR}/bin:$PATH
+
+# binutils https://ftp.gnu.org/gnu/binutils/?C=M;O=D
+wget https://ftp.gnu.org/gnu/binutils/binutils-2.40.tar.gz
+./configure --target=$HOST --prefix ${WORKDIR}
+make -j $CPUS
+make install
+
+# gcc https://ftp.gwdg.de/pub/misc/gcc/releases/
+wget https://ftp.gwdg.de/pub/misc/gcc/releases/gcc-12.2.0/gcc-12.2.0.tar.gz
+contrib/download_prerequisites
+./configure --host=$HOST --prefix ${WORKDIR} --enable-ld=no --enable-gold=yes --with-static-standard-libraries --enable-ld=no --enable-gold=yes --enable-languages='c,c++'
+make -j $CPUS
+make install
+
+wget https://musl.libc.org/releases/musl-1.2.3.tar.gz
+./configure --prefix=${WORKDIR} --disable-shared
+${MAKE} -j $CPUS
+${MAKE} install
+fi
+'
+
 # zlib https://zlib.net/
 wget https://www.zlib.net/zlib-1.2.13.tar.gz
 if [ "${TARGETOS}" = "win32" ]; then
