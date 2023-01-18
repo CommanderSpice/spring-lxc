@@ -117,15 +117,21 @@ wget https://curl.se/download/curl-7.87.0.tar.gz
 ${MAKE}
 ${MAKE} install
 
-# freetype https://sourceforge.net/projects/freetype/files/freetype2/
-wget https://prdownloads.sourceforge.net/freetype/freetype-2.12.1.tar.gz
-./configure --with-pic --disable-shared --without-brotli --prefix=${WORKDIR} --with-sysroot=${LIBDIR} --host=$HOST
-${MAKE} install
+# expat https://github.com/libexpat/libexpat/releases/
+wget https://github.com/libexpat/libexpat/releases/download/R_2_5_0/expat-2.5.0.tar.gz
+cmake . -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=${WORKDIR} -DEXPAT_BUILD_TOOLS=OFF -DEXPAT_BUILD_EXAMPLES=OFF -DEXPAT_BUILD_FUZZERS=OFF -DEXPAT_BUILD_TESTS=OFF
+make install
 
 
 # fontconfig https://www.freedesktop.org/software/fontconfig/release/
 wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.1.tar.gz
 ./configure --with-pic --disable-shared  --disable-docs --prefix=${WORKDIR} --host=$HOST
+${MAKE} install
+
+
+# freetype https://sourceforge.net/projects/freetype/files/freetype2/
+wget https://prdownloads.sourceforge.net/freetype/freetype-2.12.1.tar.gz
+./configure --with-pic --disable-shared --without-brotli --prefix=${WORKDIR} --with-sysroot=${LIBDIR} --host=$HOST
 ${MAKE} install
 
 # libogg https://github.com/xiph/ogg/releases/
