@@ -125,7 +125,7 @@ make install
 
 # fontconfig https://www.freedesktop.org/software/fontconfig/release/
 wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.1.tar.gz
-./configure --with-pic --disable-shared  --disable-docs --prefix=${WORKDIR} --host=$HOST
+LIBS="${LIBDIR}/libz.a -lm"  ./configure --with-pic --disable-shared  --disable-docs --prefix=${WORKDIR} --host=$HOST --disable-cache-build
 ${MAKE} install
 
 
