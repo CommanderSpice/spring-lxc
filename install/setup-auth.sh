@@ -14,7 +14,7 @@ mkdir -p "$BUILDBOTDIR/.ssh"
 
 
 if [ -s $BUILDSLAVECFG ]; then
-	PASSWORD=$(grep "passwd =" $BUILDSLAVECFG)
+	PASSWORD=$(grep "passwd =" $BUILDSLAVECFG | sed -n -e "s/passwd = '\(.*\)'/\1/p")
 else
 	PASSWORD=$(pwgen 64 1)
 	buildbot-worker create-worker "$CONFIGDIR" localhost:9999 "$HOSTNAME" "$PASSWORD"
