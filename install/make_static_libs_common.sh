@@ -1,3 +1,4 @@
+#!/bin/bash
 
 set -e
 
@@ -18,28 +19,28 @@ export DLDIR=${WORKDIR}/download
 #export CMAKE=i686-w64-mingw32.static.posix-cmake
 
 
-echo WORKDIR:    $WORKDIR
-echo TMPDIR:     $TMPDIR
-echo INCLUDEDIR: $INCLUDEDIR
-echo LIBDIR:     $LIBDIR
-echo MAKE:       $MAKE
-echo DLDIR:      $DLDIR
+echo "WORKDIR:    $WORKDIR"
+echo "TMPDIR:     $TMPDIR"
+echo "INCLUDEDIR: $INCLUDEDIR"
+echo "LIBDIR:     $LIBDIR"
+echo "MAKE:       $MAKE"
+echo "DLDIR:      $DLDIR"
 
 
-mkdir -p ${TMPDIR}
-mkdir -p ${INCLUDEDIR}
-mkdir -p ${LIBDIR}
-mkdir -p ${DLDIR}
+mkdir -p "${TMPDIR}"
+mkdir -p "${INCLUDEDIR}"
+mkdir -p "${LIBDIR}"
+mkdir -p "${DLDIR}"
 
 function wget {
 	URL=$1
-	FILENAME=${DLDIR}/$(basename $1)
-	if ! [ -s $FILENAME ]; then
-		/usr/bin/wget $1 -O $FILENAME
+	FILENAME=${DLDIR}/$(basename "$URL")
+	if ! [ -s "$FILENAME" ]; then
+		/usr/bin/wget "$URL" -O "$FILENAME"
 	fi
 
-	cd $(mktemp -d)
-	echo $(pwd)
-	tar xifz $FILENAME --strip-components=1
+	cd "$(mktemp -d)"
+	pwd
+	tar xifz "$FILENAME" --strip-components=1
 }
 

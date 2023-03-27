@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-source $(dirname $0)/make_static_libs_common.sh
+source "$(dirname "$0")"/make_static_libs_common.sh
 
 dpkg --add-architecture i386
 

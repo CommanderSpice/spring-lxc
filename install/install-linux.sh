@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-source $(dirname $0)/make_static_libs_common.sh
+source "$(dirname "$0")"/make_static_libs_common.sh
 
 apt update
 apt -y install g++ make cmake p7zip-full ninja-build \

@@ -2,7 +2,7 @@
 
 set -e
 
-cd $1
+cd "$1"
 
 COMMIT=0dcf498f9563fd35eff0273e1b56929fdce60383
 
@@ -23,12 +23,12 @@ fi
 
 git reset --hard $COMMIT
 
-(
-	echo 'JOBS := 2'
-	echo 'MXE_TARGETS := i686-w64-mingw32.static.posix'
-	echo 'LOCAL_PKG_LIST := cc cmake-conf boost' # curl sdl2 glew freetype devil vorbis openal add giflib openssl'
-	echo '.DEFAULT_GOAL  := local-pkg-list'
-	echo 'local-pkg-list: $(LOCAL_PKG_LIST)'
-) > settings.mk
+cat << EOF > settings.mk
+JOBS := 2
+MXE_TARGETS := i686-w64-mingw32.static.posix
+LOCAL_PKG_LIST := cc cmake-conf boost # curl sdl2 glew freetype devil vorbis openal add giflib openssl
+.DEFAULT_GOAL  := local-pkg-list
+local-pkg-list: $(LOCAL_PKG_LIST)
+EOF
 
 make

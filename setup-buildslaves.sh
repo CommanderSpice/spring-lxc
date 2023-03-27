@@ -2,15 +2,15 @@
 
 set -e
 
-SCRIPT=$(realpath $0)
-SCRIPTPATH=$(dirname $SCRIPT)
+SCRIPT=$(realpath "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
 CFG=$SCRIPTPATH/cfg
 LOCAL=$SCRIPTPATH/local
 ARCHITECTURES="x64 i686 win32"
 ARCHITECTURES="x64"
 
 CONTAINERDIR=$(lxc-config lxc.lxcpath)
-if ! [ -n "$CONTAINERDIR" ]; then
+if [ -z "$CONTAINERDIR" ]; then
 	echo "CONTAINERDIR not set!"
 	exit 1
 fi
