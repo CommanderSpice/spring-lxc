@@ -30,7 +30,11 @@ for arch in $ARCHITECTURES; do
 	fi
 	rsync -av "$CFG"/ "$CONTAINERROOT/"
 	rsync -av "$LOCAL"/ "$CONTAINERROOT"/
-	cp "/etc/resolv.conf" "$CONTAINERROOT"/etc/resolv.conf
+
+	# Copy resolv.conf if DNS fails.
+	if [ -z "$(lxc-attach --name $b -- dig springrts.com +short)" ]; then
+		cp "/etc/resolv.conf" "$CONTAINERROOT"/etc/resolv.conf
+	fi
 
 	# Enable additional archive areas.
 	lxc-attach --name $b -- sed -i -e 's/^\(deb .* main$\)/\1 contrib non-free/' /etc/apt/sources.list
