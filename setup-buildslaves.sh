@@ -32,6 +32,9 @@ for arch in $ARCHITECTURES; do
 	rsync -av "$LOCAL"/ "$CONTAINERROOT"/
 	cp "/etc/resolv.conf" "$CONTAINERROOT"/etc/resolv.conf
 
+	# Enable additional archive areas.
+	lxc-attach --name $b -- sed -i -e 's/^\(deb .* main$\)/\1 contrib non-free/' /etc/apt/sources.list
+
 	case $arch in
 		"i686" | "x64")
 			lxc-attach --name $b -- /install/install-linux.sh /home/buildbot/lib
